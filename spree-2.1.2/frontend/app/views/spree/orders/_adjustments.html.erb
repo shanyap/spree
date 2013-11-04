@@ -1,0 +1,16 @@
+<thead>
+  <tr data-hook="cart_adjustments_headers">
+    <th class="cart-adjustment-header" colspan="6"><%= Spree.t(:order_adjustments) %></th>
+  </tr>
+</thead>
+<tbody id="cart_adjustments" data-hook>
+  <% @order.line_item_adjustments.eligible.group_by(&:label).each do |label, adjustments| %>
+    <%= render "spree/orders/adjustment_row", :label => label, :adjustments => adjustments %>
+  <% end %>
+  <% @order.shipment_adjustments.eligible.group_by(&:label).each do |label, adjustments| %>
+    <%= render "spree/orders/adjustment_row", :label => label, :adjustments => adjustments %>
+  <% end %>
+  <% @order.adjustments.eligible.group_by(&:label).each do |label, adjustments| %>
+    <%= render "spree/orders/adjustment_row", :label => label, :adjustments => adjustments %>
+  <% end %>
+</tbody>
